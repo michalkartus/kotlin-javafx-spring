@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_DIR" value="./logs" />
+    <property name="ARCHIVE_DIR" value="archived" />
+    <property name="LOG_FILE" value="app" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>
+                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev, default">
+        <!-- LOG everything at INFO level -->
+        <root level="info">
+            <appender-ref ref="Console" />
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <appender name="RollingFile"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/${LOG_FILE}.log</file>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <charset>UTF-8</charset>
+                <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover monthly -->
+                <fileNamePattern>${LOG_DIR}/${ARCHIVE_DIR}/${LOG_FILE}-%d{yyyy-MM}-%i.log</fileNamePattern>
+                <!-- each archived file, size max xMB -->
+                <maxFileSize>10MB</maxFileSize>
+                <!-- total size of all archive files, if total size > x, it will delete old archived file -->
+                <totalSizeCap>100MB</totalSizeCap>
+                <!-- months to keep -->
+                <maxHistory>5</maxHistory>
+            </rollingPolicy>
+        </appender>
+        <!-- LOG everything at INFO level -->
+        <root level="info">
+            <appender-ref ref="RollingFile" />
+            <appender-ref ref="Console" />
+        </root>
+    </springProfile>
+
+</configuration>

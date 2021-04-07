@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane minHeight="20.0" minWidth="40.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.kartus.appfx.controller.Tab1Controller">
+    <Button id="throwExceptionButton" layoutX="15.0" layoutY="15.0" onAction="#throwExceptionButtonHandler" prefHeight="25.0" prefWidth="234.0" text="%tab1.throw_exception" />
+    <TextArea fx:id="textArea1" layoutX="15.0" layoutY="113.0" minHeight="20.0" minWidth="40.0" prefHeight="200.0" prefWidth="400.0" />
+    <Label fx:id="label1" layoutX="15.0" layoutY="59.0" prefHeight="17.0" prefWidth="300.0" text="%tab1.label1"/>
+</AnchorPane>

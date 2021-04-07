@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainPane" prefHeight="200.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.kartus.appfx.controller.ErrorController">
+    <top>
+        <HBox alignment="CENTER" prefHeight="50.0">
+            <Text fill="RED" text="%error.header">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Text>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane>
+            <Label fx:id="errorMessageLabel" prefHeight="90" prefWidth="320.0" wrapText="true">
+            </Label>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="50.0">
+            <Button onAction="#onCloseButtonClicked" text="%error.OK" />
+        </HBox>
+    </bottom>
+</BorderPane>
